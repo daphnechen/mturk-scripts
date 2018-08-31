@@ -72,12 +72,15 @@ class CrowdsourcingTripleValues:
             print("gold standard position out of query size and can't be last one")
             exit()
 
-        filename = os.path.join(self.directory, "master_reaching_urls" + ".csv")
+        filename = os.path.join(self.directory, "master_test_urls" + ".csv")
         with open(filename, "w+") as fh:
             # 1. generate headers
             for i in range(self.queries_per_hit):
                 # below is the header format
                 fh.write("URL" + str(i + 1))
+                fh.write(",")
+                fh.write("NAME" + str(i + 1))
+
                 if i + 1 < self.queries_per_hit:
                     fh.write(",")
                 else:
@@ -88,8 +91,8 @@ class CrowdsourcingTripleValues:
             # columns for the input file
             if (len(self.videos) % (self.queries_per_hit - 1)) != 0:
                 add_number = (self.queries_per_hit - (len(self.videos) % (self.queries_per_hit - 1))) % self.queries_per_hit - 1
-                print(len(self.videos))
-                print("add_number: " + str(add_number))
+                # print(len(self.videos))
+                # print("add_number: " + str(add_number))
                 add_pos = np.random.choice(len(self.videos), add_number)
                 for i in add_pos:
                     self.videos.append(self.videos[i])
@@ -311,14 +314,14 @@ class CrowdsourcingTripleValues:
 if __name__ == "__main__":
 
     videos = []
-    with open('source-urls/reaching-urls.txt', "r") as video_file:
+    with open('source-urls/test.txt', "r") as video_file:
         for line in video_file:
             if line == "\n":
                 continue
             videos.append(line.replace("\n", "").replace("\r", ""))
 
     gold_standards = []
-    with open('source-urls/gs/gs-reaching-urls.txt', "r") as gold_file:
+    with open('source-urls/gs/gs-test.txt', "r") as gold_file:
         for line in gold_file:
             if line == "\n":
                 continue
