@@ -72,7 +72,7 @@ class CrowdsourcingTripleValues:
             print("gold standard position out of query size and can't be last one")
             exit()
 
-        filename = os.path.join(self.directory, "master_pushing_urls" + ".csv")
+        filename = os.path.join(self.directory, "master_pressing_segmented_urls" + ".csv")
         with open(filename, "w+") as fh:
             # 1. generate headers
             for i in range(self.queries_per_hit):
@@ -314,14 +314,14 @@ class CrowdsourcingTripleValues:
 if __name__ == "__main__":
 
     videos = []
-    with open('source-urls/pushing-urls.txt', "r") as video_file:
+    with open('source-urls/pressing-segmented-urls.txt', "r") as video_file:
         for line in video_file:
             if line == "\n":
                 continue
             videos.append(line.replace("\n", "").replace("\r", ""))
 
     gold_standards = []
-    with open('source-urls/gs/gs-pushing-urls.txt', "r") as gold_file:
+    with open('source-urls/gs/gs-pressing-segmented-urls.txt', "r") as gold_file:
         for line in gold_file:
             if line == "\n":
                 continue
